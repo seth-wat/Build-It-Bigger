@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -21,11 +22,20 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskFinished
     public static final String JOKE_EXTRA = "joke_extra";
     private String joke;
     private InterstitialAd mInterstitialAd;
+    private ProgressBar progressBar;
+
+    @Override
+    protected void onPause() {
+        progressBar.setVisibility(View.INVISIBLE);
+        super.onPause();
+    }
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
 
         mInterstitialAd = new InterstitialAd(this);
@@ -35,9 +45,18 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskFinished
             public void onAdClosed() {
                 /*
                 After the ad is finished load the joke.
+                Show a progress bar until the joke Activity is launched.
                  */
+                progressBar.setVisibility(View.VISIBLE);
                 new FetchJokeAsyncTask().execute(MainActivity.this);
+
                 super.onAdClosed();
+            }
+
+            @Override
+            public void onAdLoaded() {
+                mInterstitialAd.show();
+                super.onAdLoaded();
             }
         });
 
@@ -72,9 +91,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskFinished
          */
 
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
-        if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-        }
 
     }
 

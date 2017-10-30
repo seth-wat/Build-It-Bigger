@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.udacity.gradle.builditbigger.AsyncTaskFinishedInterface;
 import com.udacity.gradle.builditbigger.FetchJokeAsyncTask;
@@ -16,11 +17,13 @@ import wat.seth.dev.androidjokedisplay.JokeDisplayActivity;
 
 public class MainActivity extends AppCompatActivity implements AsyncTaskFinishedInterface {
     public static final String JOKE_EXTRA = "joke_extra";
+    private ProgressBar progressBar;
     String joke;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
     }
 
@@ -50,7 +53,9 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskFinished
     public void tellJoke(View view) {
         /*
         Pass in the listener interface.
+        Show a progress bar until the joke Activity is launched.
          */
+        progressBar.setVisibility(View.VISIBLE);
         new FetchJokeAsyncTask().execute(this);
     }
 
@@ -65,5 +70,11 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskFinished
         startActivity(intent);
 
         return null;
+    }
+
+    @Override
+    protected void onPause() {
+        progressBar.setVisibility(View.INVISIBLE);
+        super.onPause();
     }
 }
