@@ -28,6 +28,10 @@ android {
     }
 }
 
+configurations.all() {
+    exclude group: "org.apache.httpcomponents", module: "httpclient"
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -39,6 +43,7 @@ dependencies {
     freeCompile 'com.google.android.gms:play-services-ads:9.8.0'
     compile 'com.google.code.findbugs:jsr305:2.0.1'
     compile project(path: ':backend', configuration: 'android-endpoints')
-    compile group: 'com.google.http-client', name: 'google-http-client-android', version: '1.23.0'
     compile group: 'com.google.api-client', name: 'google-api-client', version: '1.23.0'
+    compile group: 'com.google.http-client', name: 'google-http-client-android', version: '1.23.0'
+
 }
