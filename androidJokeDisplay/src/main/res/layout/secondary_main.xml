@@ -6,9 +6,13 @@
     android:layout_height="match_parent"
     tools:context="wat.seth.dev.androidjokedisplay.JokeDisplayActivity">
     <TextView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        android:padding="8dp"
         android:id="@+id/joke"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

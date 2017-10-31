@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">androidJokeDisplay</string>
+    <string name="error_msg">Something went wrong retrieving the joke.</string>
 </resources>
