@@ -1,5 +1,5 @@
 # Gradle for Android and Java
-Use the power of Gradle to create a modular and multi flavor app.
+Utilize Gradle to create a modular and multi flavor app.
 
 ## Features
 * Java library for supplying jokes
