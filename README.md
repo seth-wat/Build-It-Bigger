@@ -17,6 +17,9 @@ The purpose of this project was to apply Gradle concepts to manage local and rem
 * Select *app* configuration and install either `freeDebug` (ads)  or `paidDebug`.
 * Tested on Android API 24.
 
+## Notes
+* My usage of git in this repository isn't great. I'm actively improving my git best-practices if you examine my more recent repositories.  
+
 ## License
 ````
 MIT License
